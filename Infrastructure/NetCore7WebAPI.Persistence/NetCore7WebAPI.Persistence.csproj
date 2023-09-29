@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\NetCore7WebAPI.Application\NetCore7WebAPI.Application.csproj" />
     <ProjectReference Include="..\..\Core\NetCore7WebAPI.Domain\NetCore7WebAPI.Domain.csproj" />
   </ItemGroup>
 
