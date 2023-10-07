@@ -18,6 +18,6 @@ namespace NetCore7WebAPI.Domain.Entities
         {
             Name = name;
         }
-        public required string Name { get; set; }
+        public  string Name { get; set; }
     }
 }
