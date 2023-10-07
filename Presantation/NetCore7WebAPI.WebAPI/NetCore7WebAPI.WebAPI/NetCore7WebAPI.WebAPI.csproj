@@ -16,10 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\NetCore7WebAPI.Persistence\NetCore7WebAPI.Persistence.csproj" />
   </ItemGroup>
 
