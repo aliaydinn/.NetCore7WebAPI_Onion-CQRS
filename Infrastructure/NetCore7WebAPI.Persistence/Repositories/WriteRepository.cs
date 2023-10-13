@@ -32,14 +32,14 @@ namespace NetCore7WebAPI.Persistence.Repositories
             await Table.AddRangeAsync(entities);
         }
 
-        public Task HardDeleteAsync(T entity)
+        public async Task HardDeleteAsync(T entity)
         {
-            throw new NotImplementedException();
+            await Task.Run(() => Table.Remove(entity));
         }
 
-        public Task SoftDeleteAsync(T entity)
+        public async Task HardDeleteRangeAsync(IList<T> entities)
         {
-            throw new NotImplementedException();
+            await Task.Run(() => Table.RemoveRange(entities));
         }
 
         public async Task<T> UpdateAsync(T entity)

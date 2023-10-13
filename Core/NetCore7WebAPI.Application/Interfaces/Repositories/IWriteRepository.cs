@@ -12,7 +12,8 @@ namespace NetCore7WebAPI.Application.Interfaces.Repositories
         Task AddAsync(T entity);
         Task AddRangeAsync(IList<T> entities);
         Task<T> UpdateAsync(T entity);
-        Task HardDeleteAsync(T entity); 
+        Task HardDeleteAsync(T entity);
+        Task HardDeleteRangeAsync(IList<T> entities);
 
     }
 }
