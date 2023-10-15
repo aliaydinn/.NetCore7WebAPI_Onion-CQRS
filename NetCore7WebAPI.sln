@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore7WebAPI.Persistence"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore7WebAPI.WebAPI", "Presantation\NetCore7WebAPI.WebAPI\NetCore7WebAPI.WebAPI\NetCore7WebAPI.WebAPI.csproj", "{88D0BD57-58DE-437B-B57E-397C2941A1BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCore7WebAPI.Mapper", "Core\NetCore7WebAPI.Mapper\NetCore7WebAPI.Mapper.csproj", "{7044EC52-0040-4EB7-9729-DD5F41FC5CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCore7WebAPI.Mapper", "Core\NetCore7WebAPI.Mapper\NetCore7WebAPI.Mapper.csproj", "{7044EC52-0040-4EB7-9729-DD5F41FC5CE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

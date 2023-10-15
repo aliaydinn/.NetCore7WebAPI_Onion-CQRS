@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using NetCore7WebAPI.Application.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace NetCore7WebAPI.Application
         public static void AddApplication(this IServiceCollection services)
         {
             var assembly = Assembly.GetExecutingAssembly();
+            services.AddTransient<ExceptionMiddleware>();
             services.AddMediatR(app => app.RegisterServicesFromAssemblies(assembly));
         }
     }

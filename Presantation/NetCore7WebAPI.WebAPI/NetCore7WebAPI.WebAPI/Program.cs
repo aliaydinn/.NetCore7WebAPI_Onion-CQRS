@@ -1,6 +1,8 @@
 using NetCore7WebAPI.Persistence;
 using NetCore7WebAPI.Application;
 using NetCore7WebAPI.Mapper;
+using NetCore7WebAPI.Application.Exceptions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -27,6 +29,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.ConfigureExcepitonHandlingMiddleware();
 app.UseAuthorization();
 
 app.MapControllers();
