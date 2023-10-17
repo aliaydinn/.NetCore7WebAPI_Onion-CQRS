@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NetCore7WebAPI.Application.Features.Products.Command.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest>
+    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest,Unit>
     {
         private readonly IUnitOfWork unitOfWork;
 
@@ -17,7 +17,7 @@ namespace NetCore7WebAPI.Application.Features.Products.Command.CreateProduct
         {
             this.unitOfWork = unitOfWork;
         }
-        public async Task Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
         {
             Product product = new(request.Title, request.Description, request.Price, request.Discount, request.BrandId);
             await unitOfWork.GetWriteRepository<Product>().AddAsync(product);
@@ -32,7 +32,8 @@ namespace NetCore7WebAPI.Application.Features.Products.Command.CreateProduct
                 }
 
             await unitOfWork.SaveAsync();
-                
+
+            return Unit.Value;
         }
     }
 }
