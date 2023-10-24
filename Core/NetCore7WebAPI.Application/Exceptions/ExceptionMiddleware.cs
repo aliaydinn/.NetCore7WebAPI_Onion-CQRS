@@ -47,7 +47,7 @@ namespace NetCore7WebAPI.Application.Exceptions
 			List<string> error = new()
 			{
 				exception.Message,
-				exception.InnerException?.ToString()
+				
 			};
 
 			return httpContext.Response.WriteAsync(new ExceptionModel
