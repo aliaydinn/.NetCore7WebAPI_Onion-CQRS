@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using NetCore7WebAPI.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NetCore7WebAPI.Persistence.Context
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User,Role,Guid>
     {
         public AppDbContext()
         {
@@ -18,7 +19,7 @@ namespace NetCore7WebAPI.Persistence.Context
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
-
+        
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Detail> Details { get; set; }
