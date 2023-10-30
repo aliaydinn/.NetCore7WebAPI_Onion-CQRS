@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\NetCore7WebAPI.Application\NetCore7WebAPI.Application.csproj" />
     <ProjectReference Include="..\..\..\Core\NetCore7WebAPI.Mapper\NetCore7WebAPI.Mapper.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\NetCore7WebAPI.Infrastructure\NetCore7WebAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\NetCore7WebAPI.Persistence\NetCore7WebAPI.Persistence.csproj" />
   </ItemGroup>
 
