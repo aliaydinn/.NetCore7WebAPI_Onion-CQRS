@@ -1,5 +1,6 @@
 using NetCore7WebAPI.Persistence;
 using NetCore7WebAPI.Application;
+using NetCore7WebAPI.Infrastructure;
 using NetCore7WebAPI.Mapper;
 using NetCore7WebAPI.Application.Exceptions;
 
@@ -19,6 +20,7 @@ builder.Configuration.SetBasePath(env.ContentRootPath)
 
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCustomMapper();
 var app = builder.Build();
 
