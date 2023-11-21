@@ -3,6 +3,8 @@ using NetCore7WebAPI.Application;
 using NetCore7WebAPI.Infrastructure;
 using NetCore7WebAPI.Mapper;
 using NetCore7WebAPI.Application.Exceptions;
+using Microsoft.OpenApi.Models;
+using System.Collections;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,37 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCustomMapper();
+
+builder.Services.AddSwaggerGen(opt =>
+{
+    opt.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "NetCoreApýProject", Description = "Swagger Clint" });
+    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Autharization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        In = ParameterLocation.Header,
+        BearerFormat = "JWT",
+        Description = "'Bearer' yazýp boþluk býraktýktan sonra Tokený girebilirsiniz ."
+    });
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference=new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
+});
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
