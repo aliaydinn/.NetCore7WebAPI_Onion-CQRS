@@ -1,4 +1,8 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using NetCore7WebAPI.Application.Bases;
+using NetCore7WebAPI.Application.Features.Products.Rules;
+using NetCore7WebAPI.Application.Interfaces.AutoMapper;
 using NetCore7WebAPI.Application.Interfaces.UnitOfWorks;
 using NetCore7WebAPI.Domain.Entities;
 using System;
@@ -9,13 +13,12 @@ using System.Threading.Tasks;
 
 namespace NetCore7WebAPI.Application.Features.Products.Command.DeleteProduct
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandRequest,Unit>
+    public class DeleteProductCommandHandler : BaseHandler,IRequestHandler<DeleteProductCommandRequest,Unit>
     {
-        private readonly IUnitOfWork unitOfWork;
 
-        public DeleteProductCommandHandler(IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
-            this.unitOfWork = unitOfWork;
+            
         }
         public async Task<Unit> Handle(DeleteProductCommandRequest request, CancellationToken cancellationToken)
         {

@@ -1,5 +1,8 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
+using NetCore7WebAPI.Application.Bases;
 using NetCore7WebAPI.Application.Features.Products.Rules;
+using NetCore7WebAPI.Application.Interfaces.AutoMapper;
 using NetCore7WebAPI.Application.Interfaces.UnitOfWorks;
 using NetCore7WebAPI.Domain.Entities;
 using System;
@@ -10,14 +13,14 @@ using System.Threading.Tasks;
 
 namespace NetCore7WebAPI.Application.Features.Products.Command.CreateProduct
 {
-    public class CreateProductCommandHandler : IRequestHandler<CreateProductCommandRequest,Unit>
+    public class CreateProductCommandHandler :BaseHandler, IRequestHandler<CreateProductCommandRequest,Unit>
     {
-        private readonly IUnitOfWork unitOfWork;
+       
         private readonly ProductRules productRules;
 
-        public CreateProductCommandHandler(IUnitOfWork unitOfWork,ProductRules productRules)
+        public CreateProductCommandHandler(IMapper mapper,IUnitOfWork unitOfWork,IHttpContextAccessor httpContextAccessor,ProductRules productRules) : base(mapper,unitOfWork,httpContextAccessor) 
         {
-            this.unitOfWork = unitOfWork;
+            
             this.productRules = productRules;
         }
         public async Task<Unit> Handle(CreateProductCommandRequest request, CancellationToken cancellationToken)
