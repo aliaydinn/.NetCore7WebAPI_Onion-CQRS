@@ -20,4 +20,8 @@
     <ProjectReference Include="..\NetCore7WebAPI.Domain\NetCore7WebAPI.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Auth\Queries\" />
+  </ItemGroup>
+
 </Project>

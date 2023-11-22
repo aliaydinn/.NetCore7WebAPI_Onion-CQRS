@@ -24,6 +24,8 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddCustomMapper();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 
 builder.Services.AddSwaggerGen(opt =>
 {
