@@ -13,58 +13,60 @@ namespace NetCore7WebAPI.Application.Exceptions
     {
         public async Task InvokeAsync(HttpContext httpContext, RequestDelegate next)
         {
-			try
-			{
-				await next(httpContext);
-			}
-			catch (Exception ex)
-			{
+            try
+            {
+                await next(httpContext);
+            }
+            catch (Exception ex)
+            {
 
-			    await HandleExceptionAsync(httpContext,ex);
-			}
+                await HandleExceptionAsync(httpContext, ex);
+            }
         }
 
 
+        private static Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
+        {
 
-		private static Task HandleExceptionAsync(HttpContext httpContext,Exception exception)
-		{
-
-			var statusCode=GetStatusCode(exception);
-			httpContext.Response.StatusCode = statusCode;
-			httpContext.Response.ContentType = "application/json";
+            var statusCode = GetStatusCode(exception);
+            httpContext.Response.StatusCode = statusCode;
+            httpContext.Response.ContentType = "application/json";
 
 
-			if (exception.GetType()==typeof(ValidationException))
-			{
-				return httpContext.Response.WriteAsync(new ExceptionModel
-				{
-					Errors = ((ValidationException)exception).Errors.Select(x => x.ErrorMessage),
-					StatusCode=StatusCodes.Status400BadRequest
-				}.ToString());
+            if (exception.GetType() == typeof(ValidationException))
+            {
+                return httpContext.Response.WriteAsync(new ExceptionModel
+                {
+                    Errors = ((ValidationException)exception).Errors.Select(x => x.ErrorMessage),
+                    StatusCode = StatusCodes.Status400BadRequest
+                }.ToString());
 
-			}
+            }
 
-			List<string> error = new()
-			{
-				exception.Message,
-				
-			};
+            List<string> error = new()
+            {
+                $"Hata Mesajı :  {exception.Message} "
 
-			return httpContext.Response.WriteAsync(new ExceptionModel
-			{
-				Errors = error,
-				StatusCode = statusCode
-			}.ToString());
+            };
 
-		}
+            return httpContext.Response.WriteAsync(new ExceptionModel
+            {
+                Errors = error,
+                StatusCode = statusCode
+            }.ToString());
 
-		private static int GetStatusCode(Exception exception) =>
-			exception switch
-			{
-				BadRequestException => StatusCodes.Status400BadRequest,
-				NotFoundException => StatusCodes.Status400BadRequest,
-				ValidationException => StatusCodes.Status422UnprocessableEntity,
-				_ => StatusCodes.Status500InternalServerError
-			};
+        }
+
+        private static int GetStatusCode(Exception exception) =>
+            exception switch
+            {
+                BadRequestException => StatusCodes.Status400BadRequest,
+                NotFoundException => StatusCodes.Status400BadRequest,
+                ValidationException => StatusCodes.Status422UnprocessableEntity,
+                _ => StatusCodes.Status500InternalServerError
+            };
+
+
+
     }
 }

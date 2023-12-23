@@ -46,7 +46,7 @@ namespace NetCore7WebAPI.Infrastructure.Tokens
                 (
                 audience: tokenSettings.Audience,
                 issuer: tokenSettings.Issure,
-                expires: DateTime.Now.AddDays(tokenSettings.TokenValidityMinutes),
+                expires: DateTime.Now.AddMinutes(tokenSettings.TokenValidityMinutes),
                 claims: claims,
                 signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
 
