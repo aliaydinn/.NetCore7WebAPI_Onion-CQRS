@@ -17,5 +17,11 @@ namespace NetCore7WebAPI.Application.Features.Auth.Rules
             return Task.CompletedTask;
 
         }
+
+       public Task EmailorPasswordShouldBeInvalid(User? user, bool checkPassword)
+        {
+            if (user is null || !checkPassword) throw new EmailorPasswordShouldBeInvalidException();
+            return Task.CompletedTask;
+        }
     }
 }

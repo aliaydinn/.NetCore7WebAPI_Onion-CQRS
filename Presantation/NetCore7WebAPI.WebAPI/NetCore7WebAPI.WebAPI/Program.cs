@@ -30,16 +30,16 @@ builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.SwaggerDoc("v1", new OpenApiInfo { Version = "v1", Title = "NetCoreApýProject", Description = "Swagger Clint" });
-    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
     {
-        Name = "Autharization",
+        Name = "Authorization",
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer",
         In = ParameterLocation.Header,
         BearerFormat = "JWT",
-        Description = "'Bearer' yazýp boþluk býraktýktan sonra Tokený girebilirsiniz ."
+        Description = "'Bearer' yazýp boþluk býraktýktan sonra Token'ý girebilirsiniz ."
     });
-    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    opt.AddSecurityRequirement(new OpenApiSecurityRequirement()
     {
         {
             new OpenApiSecurityScheme
