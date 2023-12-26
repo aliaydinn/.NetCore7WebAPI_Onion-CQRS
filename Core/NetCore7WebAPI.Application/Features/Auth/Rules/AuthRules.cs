@@ -29,5 +29,11 @@ namespace NetCore7WebAPI.Application.Features.Auth.Rules
             if (expiredTime <= DateTime.Now) throw new RefreshTokenShouldNotBeExpiredException();
             return Task.CompletedTask;
         }
+
+        public Task EmailShouldBeValid(User? user)
+        {
+            if (user is null) throw new EmailShouldBeValidException();
+            return Task.CompletedTask;
+        }
     }
 }
