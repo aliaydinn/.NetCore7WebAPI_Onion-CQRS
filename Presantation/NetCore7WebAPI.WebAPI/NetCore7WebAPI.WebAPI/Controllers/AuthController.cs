@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using NetCore7WebAPI.Application.Features.Auth.Command.Login;
 using NetCore7WebAPI.Application.Features.Auth.Command.RefreshToken;
 using NetCore7WebAPI.Application.Features.Auth.Command.Register;
+using NetCore7WebAPI.Application.Features.Auth.Command.Revoke;
+using NetCore7WebAPI.Application.Features.Auth.Command.RevokeAll;
 
 namespace NetCore7WebAPI.WebAPI.Controllers
 {
@@ -40,5 +42,21 @@ namespace NetCore7WebAPI.WebAPI.Controllers
             return StatusCode(StatusCodes.Status200OK, response);
 
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Revoke(RevokeCommandRequest revokeCommandRequest)
+        {
+            await mediator.Send(revokeCommandRequest);
+            return StatusCode(StatusCodes.Status200OK);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RevokeAll()
+        {
+            await mediator.Send(new RevokeAllCommandRequest());
+            return StatusCode(StatusCodes.Status200OK);
+
+        } 
     }
 }
